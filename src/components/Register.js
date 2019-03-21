@@ -8,7 +8,9 @@ const options = [
 
 class Register extends Component {
   render() {
-      
+    // const { email, password } = this.props.data;
+    const { changeView } = this.props;
+
     return (
       <div style={{background: '#f8f8f9', height: '100vh'}}>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
@@ -27,7 +29,7 @@ class Register extends Component {
             <Button color="teal" fluid type='submit'>Submit</Button>
           </Form>
             <Message>
-              Already have an account? <a href='#' onClick={this.props.changeView}>Log In</a>
+              Already have an account? <a href='#' onClick={changeView}>Log In</a>
             </Message>
           </Grid.Column>
         </Grid>
