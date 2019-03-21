@@ -22,7 +22,6 @@ class Login extends Component {
   onChangePassword = (event) => {this.setState({password: event.target.value})}
 
   render() {
-    // const { email: defaultEmail, password: defaultPassword } = this.props.data;
     const { email, password } = this.state;
     const { changeView } = this.props;
 

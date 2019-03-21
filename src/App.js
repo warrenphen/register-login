@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux'
 
 import Login from './components/Login';
 import Register from './components/Register';
 
-import { loginSubmit } from './actions';
+import { loginSubmit, registerSubmit } from './actions';
 
 class App extends Component {
   constructor(props) {
@@ -24,12 +23,12 @@ class App extends Component {
 
   renderView() {
     const { display } = this.state;
-    const { Login: login, Register: register, loginSubmit } = this.props;
+    const { Login: login, Register: register, loginSubmit, registerSubmit } = this.props;
 
     if (display === 'login'){
       return <Login data={login} loginSubmit={loginSubmit} changeView={this.changeView}/>;
     } else if (display === 'register') {
-      return <Register data={register} changeView={this.changeView}/>;
+      return <Register data={register} registerSubmit={registerSubmit} changeView={this.changeView}/>;
     }
   }
 
@@ -50,6 +49,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => ({
   loginSubmit: (payload) => dispatch(loginSubmit(payload)),
+  registerSubmit: (payload) => dispatch(registerSubmit(payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
