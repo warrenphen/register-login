@@ -6,7 +6,7 @@ const defaultState = {
     hasAgreed: false,
 }
 
-const registerReducer = (state = defaultState, action) => {
+export default (state = defaultState, action) => {
     switch (action.type) {
       case 'SET_REGISTER_SUBMIT':
         return {}
@@ -14,5 +14,3 @@ const registerReducer = (state = defaultState, action) => {
         return state
     }
   }
-  
-  export default registerReducer;

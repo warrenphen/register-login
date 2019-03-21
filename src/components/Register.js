@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Image, Message, Segment, Select } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Select } from 'semantic-ui-react';
 
 const options = [
   { key: 'm', text: 'Male', value: 'male' },

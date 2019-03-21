@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
+import { connect } from 'react-redux'
 
 import Login from './components/Login';
 import Register from './components/Register';
-
-const options = [
-  { key: 'm', text: 'Male', value: 'male' },
-  { key: 'f', text: 'Female', value: 'female' },
-]
 
 class App extends Component {
   constructor(props) {
@@ -26,11 +22,12 @@ class App extends Component {
 
   renderView() {
     const { display } = this.state;
+    const { Login: login, Register: register } = this.props;
 
     if (display === 'login'){
-      return <Login changeView={this.changeView}/>;
+      return <Login data={login} changeView={this.changeView}/>;
     } else if (display === 'register') {
-      return <Register changeView={this.changeView}/>;
+      return <Register data={register} changeView={this.changeView}/>;
     }
   }
 
@@ -45,4 +42,8 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return state
+}
+
+export default connect(mapStateToProps)(App)
