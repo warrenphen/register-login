@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import Login from './components/Login';
 import Register from './components/Register';
 
+import { loginSubmit } from './actions';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,10 +24,10 @@ class App extends Component {
 
   renderView() {
     const { display } = this.state;
-    const { Login: login, Register: register } = this.props;
+    const { Login: login, Register: register, loginSubmit } = this.props;
 
     if (display === 'login'){
-      return <Login data={login} changeView={this.changeView}/>;
+      return <Login data={login} loginSubmit={loginSubmit} changeView={this.changeView}/>;
     } else if (display === 'register') {
       return <Register data={register} changeView={this.changeView}/>;
     }
@@ -46,4 +48,8 @@ function mapStateToProps(state) {
   return state
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = dispatch => ({
+  loginSubmit: (payload) => dispatch(loginSubmit(payload)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

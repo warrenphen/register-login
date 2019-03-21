@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 
 class Login extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.emailInput = React.createRef();
-    this.passwordInput = React.createRef();
+    this.state = { 
+      email: props.data.email,
+      password: props.data.password,
+    }
   }
 
-  onSubmit = () => {
-    
+  onSubmit = (event) => {
+    this.props.loginSubmit(this.state);
+    event.preventDefault();
+
+    alert('Saved! (check redux tools)')
   }
+
+  onChangeEmail = (event) => {this.setState({email: event.target.value})}
+  onChangePassword = (event) => {this.setState({password: event.target.value})}
 
   render() {
-    const { email, password } = this.props.data;
+    // const { email: defaultEmail, password: defaultPassword } = this.props.data;
+    const { email, password } = this.state;
     const { changeView } = this.props;
 
     return (
@@ -22,12 +31,12 @@ class Login extends Component {
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
           <Header>Login</Header>
-            <Form size='large'>
+            <Form onSubmit={this.onSubmit} size='large'>
               <Segment stacked>
-                <Form.Input ref={this.emailInput} defaultValue={email} fluid icon='user' iconPosition='left' placeholder='E-mail address' />
+                <Form.Input value={email} onChange={this.onChangeEmail} fluid icon='user' iconPosition='left' placeholder='E-mail address' />
                 <Form.Input
-                  ref={this.passwordInput}
-                  defaultValue={password}
+                  value={password}
+                  onChange={this.onChangePassword}
                   fluid
                   icon='lock'
                   iconPosition='left'
@@ -35,7 +44,7 @@ class Login extends Component {
                   type='password'
                 />
 
-                <Button onClick={this.onSubmit} color='teal' fluid size='large'>
+                <Button type="submit" color='teal' fluid size='large'>
                   Login
                 </Button>
               </Segment>
