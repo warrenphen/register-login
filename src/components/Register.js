@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Message, Select } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Message } from 'semantic-ui-react';
 
 const options = [
   { key: 'm', text: 'Male', value: 'male' },
@@ -23,16 +23,15 @@ class Register extends Component {
   onSubmit = (event) => {
     this.props.registerSubmit(this.state);
     event.preventDefault();
-
-    alert('Saved! (check redux tools)')
+    alert('You have been registered! (check redux tools for saved data)')
   }
 
   onChangeFirst = (event) => {this.setState({firstName: event.target.value})}
   onChangeLast = (event) => {this.setState({lastName: event.target.value})}
   onChangeEmail = (event) => {this.setState({email: event.target.value})}
   onChangePassword = (event) => {this.setState({password: event.target.value})}
-  onChangeGender = (event) => {this.setState({gender: event.target.value})}
-  onChangeHasAgreed = (event) => {this.setState({hasAgreed: event.target.value})}
+  onChangeGender = (e, target) => {this.setState({gender: target.value})}
+  onChangeHasAgreed = (e, target) => {this.setState({hasAgreed: target.checked})}
 
   render() {
     const { firstName, lastName, email, password, gender, hasAgreed } = this.state;
@@ -51,8 +50,8 @@ class Register extends Component {
             </Form.Group>
             <Form.Input value={email} onChange={this.onChangeEmail} fluid placeholder='Email' />
             <Form.Input value={password} onChange={this.onChangePassword} type="password" fluid placeholder='New Password' />
-            <Form.Field value={gender} onChange={this.onChangeGender} control={Select} options={options} placeholder='Gender' />
-            <Form.Checkbox value={hasAgreed} label='I agree to the Terms and Conditions' />
+            <Form.Select value={gender} onChange={this.onChangeGender} options={options} placeholder='Gender' />
+            <Form.Checkbox checked={hasAgreed} onChange={this.onChangeHasAgreed} label='I agree to the Terms and Conditions' />
             <Button color="teal" fluid type='submit'>Submit</Button>
           </Form>
             <Message>

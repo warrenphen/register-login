@@ -14,8 +14,7 @@ class Login extends Component {
   onSubmit = (event) => {
     this.props.loginSubmit(this.state);
     event.preventDefault();
-
-    alert('Saved! (check redux tools)')
+    alert('You are now logged in! (check redux tools for saved data)')
   }
 
   onChangeEmail = (event) => {this.setState({email: event.target.value})}

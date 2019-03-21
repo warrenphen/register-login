@@ -1,8 +1,8 @@
 const defaultState = {
     firstName: 'John',
     lastName: 'Doe',
-    password: '',
     email: 'johndoe@example.com',
+    password: '',
     gender: 'male',
     hasAgreed: false,
 }
@@ -13,9 +13,9 @@ export default (state = defaultState, action) => {
         return Object.assign({}, state, {
           firstName: action.payload.firstName,
           lastName: action.payload.lastName,
-          password: action.payload.password,
           email: action.payload.email,
-          gender: action.payload.password,
+          password: action.payload.password,
+          gender: action.payload.gender,
           hasAgreed: action.payload.hasAgreed,
       })
       default:
